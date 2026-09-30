@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Matris 3x3"/>
+        <attribute name="authors" value="Arasss"/>
+        <attribute name="about" value="3x3 matris: transpozisiya, toplam, determinant, vurma"/>
+        <attribute name="saved" value="2026-10-01 12:00:00 PM"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="j" type="Integer" array="False" size=""/>
+            <declare name="t" type="Integer" array="False" size=""/>
+            <declare name="k" type="Integer" array="False" size=""/>
+            <declare name="det" type="Integer" array="False" size=""/>
+            <declare name="A" type="Integer" array="True" size="9"/>
+            <declare name="B" type="Integer" array="True" size="9"/>
+            <declare name="Tr" type="Integer" array="True" size="9"/>
+            <declare name="S" type="Integer" array="True" size="9"/>
+            <declare name="C" type="Integer" array="True" size="9"/>
+            <output expression="&quot;A matrisini daxil edin:&quot;" newline="True"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <for variable="j" start="0" end="2" direction="inc" step="1">
+                    <input variable="A[i*3+j]"/>
+                </for>
+            </for>
+            <output expression="&quot;B matrisini daxil edin:&quot;" newline="True"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <for variable="j" start="0" end="2" direction="inc" step="1">
+                    <input variable="B[i*3+j]"/>
+                </for>
+            </for>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <for variable="j" start="0" end="2" direction="inc" step="1">
+                    <assign variable="Tr[j*3+i]" expression="A[i*3+j]"/>
+                </for>
+            </for>
+            <for variable="k" start="0" end="8" direction="inc" step="1">
+                <assign variable="S[k]" expression="A[k] + B[k]"/>
+            </for>
+            <assign variable="det" expression="A[0]*(A[4]*A[8] - A[5]*A[7]) - A[1]*(A[3]*A[8] - A[5]*A[6]) + A[2]*(A[3]*A[7] - A[4]*A[6])"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <for variable="j" start="0" end="2" direction="inc" step="1">
+                    <assign variable="C[i*3+j]" expression="0"/>
+                    <for variable="t" start="0" end="2" direction="inc" step="1">
+                        <assign variable="C[i*3+j]" expression="C[i*3+j] + A[i*3+t] * B[t*3+j]"/>
+                    </for>
+                </for>
+            </for>
+            <output expression="&quot;Transpozisiya A^T:&quot;" newline="True"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <output expression="&quot;| &quot; &amp; Fmt(Tr[i*3]) &amp; Fmt(Tr[i*3+1]) &amp; Fmt(Tr[i*3+2]) &amp; &quot; |&quot;" newline="True"/>
+            </for>
+            <output expression="&quot;Toplam A+B:&quot;" newline="True"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <output expression="&quot;| &quot; &amp; Fmt(S[i*3]) &amp; Fmt(S[i*3+1]) &amp; Fmt(S[i*3+2]) &amp; &quot; |&quot;" newline="True"/>
+            </for>
+            <output expression="&quot;Determinant: &quot; &amp; det" newline="True"/>
+            <output expression="&quot;Hasil AxB:&quot;" newline="True"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <output expression="&quot;| &quot; &amp; Fmt(C[i*3]) &amp; Fmt(C[i*3+1]) &amp; Fmt(C[i*3+2]) &amp; &quot; |&quot;" newline="True"/>
+            </for>
+        </body>
+    </function>
+    <function name="Fmt" type="String" variable="s">
+        <parameters>
+            <parameter name="x" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="s" type="String" array="False" size=""/>
+            <declare name="w" type="Integer" array="False" size=""/>
+            <declare name="p" type="Integer" array="False" size=""/>
+            <assign variable="s" expression="&quot;&quot; &amp; x"/>
+            <assign variable="w" expression="1"/>
+            <if expression="x &lt; 0">
+                <then>
+                    <assign variable="w" expression="w + 1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="x &gt;= 10 Or x &lt;= -10">
+                <then>
+                    <assign variable="w" expression="w + 1"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="x &gt;= 100 Or x &lt;= -100">
+                <then>
+                    <assign variable="w" expression="w + 1"/>
+                </then>
+                <else/>
+            </if>
+            <for variable="p" start="w" end="4" direction="inc" step="1">
+                <assign variable="s" expression="&quot; &quot; &amp; s"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
