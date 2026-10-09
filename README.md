@@ -1,1 +1,1 @@
-Bütün Lab tapşırıqları ayrı ayrılıqda qovluqlarda hazırlanıb.
+Lab 3 faylları, flowgoritm kodu və docx
